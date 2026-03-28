@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+  <defs>
+    <linearGradient id="bm25" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#4ade80"/>
+    </linearGradient>
+    <linearGradient id="rerank" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="comp1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="100%" style="stop-color:#fb923c"/>
+    </linearGradient>
+    <linearGradient id="comp2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#06b6d4"/>
+      <stop offset="100%" style="stop-color:#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="comp3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#64748b"/>
+      <stop offset="100%" style="stop-color:#94a3b8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="320" rx="12" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" fill="#e6edf3" font-size="16" font-weight="600">Full Pipeline: BM25-Turbo + Flash-Rerank vs Reranking-Only APIs</text>
+  <text x="400" y="55" text-anchor="middle" fill="#7d8590" font-size="12">our full pipeline (search 8.8M docs + rerank) vs competitors' reranking alone</text>
+
+  <!-- Grid lines -->
+  <line x1="220" y1="75" x2="220" y2="280" stroke="#21262d" stroke-width="1"/>
+  <line x1="308" y1="75" x2="308" y2="280" stroke="#21262d" stroke-width="1"/>
+  <line x1="396" y1="75" x2="396" y2="280" stroke="#21262d" stroke-width="1"/>
+  <line x1="484" y1="75" x2="484" y2="280" stroke="#21262d" stroke-width="1"/>
+  <line x1="572" y1="75" x2="572" y2="280" stroke="#21262d" stroke-width="1"/>
+  <line x1="660" y1="75" x2="660" y2="280" stroke="#21262d" stroke-width="1"/>
+  <line x1="748" y1="75" x2="748" y2="280" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Grid labels -->
+  <text x="220" y="295" text-anchor="middle" fill="#7d8590" font-size="10">0</text>
+  <text x="308" y="295" text-anchor="middle" fill="#7d8590" font-size="10">100ms</text>
+  <text x="396" y="295" text-anchor="middle" fill="#7d8590" font-size="10">200ms</text>
+  <text x="484" y="295" text-anchor="middle" fill="#7d8590" font-size="10">300ms</text>
+  <text x="572" y="295" text-anchor="middle" fill="#7d8590" font-size="10">400ms</text>
+  <text x="660" y="295" text-anchor="middle" fill="#7d8590" font-size="10">500ms</text>
+  <text x="748" y="295" text-anchor="middle" fill="#7d8590" font-size="10">600ms</text>
+
+  <!-- BM25-Turbo + Flash-Rerank (stacked bar) -->
+  <text x="210" y="103" text-anchor="end" fill="#e6edf3" font-size="13" font-weight="500">BM25-Turbo</text>
+  <text x="210" y="117" text-anchor="end" fill="#7d8590" font-size="10">+ Flash-Rerank</text>
+  <rect x="220" y="90" width="8" height="32" rx="2" fill="url(#bm25)"/>
+  <rect x="228" y="90" width="63" height="32" rx="2" fill="url(#rerank)"/>
+  <text x="301" y="111" fill="#a5b4fc" font-size="13" font-weight="700">80 ms</text>
+  <text x="351" y="104" fill="#4ade80" font-size="9">8.6ms</text>
+  <text x="351" y="118" fill="#a5b4fc" font-size="9">72ms</text>
+  <text x="407" y="111" fill="#22c55e" font-size="11" font-weight="600">SEARCH 8.8M + RERANK</text>
+
+  <!-- Jina (reranking only) -->
+  <text x="210" y="163" text-anchor="end" fill="#e6edf3" font-size="13" font-weight="500">Jina v3</text>
+  <text x="210" y="177" text-anchor="end" fill="#7d8590" font-size="10">(rerank only)</text>
+  <rect x="220" y="150" width="165" height="32" rx="4" fill="url(#comp1)"/>
+  <text x="395" y="171" fill="#fdba74" font-size="13" font-weight="700">188 ms</text>
+  <text x="450" y="171" fill="#7d8590" font-size="10">reranking only — no retrieval</text>
+
+  <!-- Cohere (reranking only) -->
+  <text x="210" y="223" text-anchor="end" fill="#e6edf3" font-size="13" font-weight="500">Cohere 3.5</text>
+  <text x="210" y="237" text-anchor="end" fill="#7d8590" font-size="10">(rerank only)</text>
+  <rect x="220" y="210" width="522" height="32" rx="4" fill="url(#comp2)"/>
+  <text x="747" y="225" fill="#67e8f9" font-size="11" font-weight="700">595</text>
+  <text x="747" y="239" fill="#67e8f9" font-size="10">ms</text>
+
+  <!-- Voyage (reranking only) -->
+  <text x="210" y="273" text-anchor="end" fill="#e6edf3" font-size="13" font-weight="500">Voyage 2.5</text>
+  <text x="210" y="287" text-anchor="end" fill="#7d8590" font-size="10">(rerank only)</text>
+  <rect x="220" y="260" width="528" height="32" rx="4" fill="url(#comp3)"/>
+  <text x="753" y="275" fill="#cbd5e1" font-size="11" font-weight="700">603</text>
+  <text x="753" y="289" fill="#cbd5e1" font-size="10">ms</text>
+</svg>

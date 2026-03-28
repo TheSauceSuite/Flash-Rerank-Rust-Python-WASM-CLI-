@@ -38,14 +38,9 @@ results = reranker.rerank("what is machine learning?", [
 
 ### Competitive Comparison — Reranking 100 Documents
 
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#4f46e5', 'primaryTextColor': '#fff', 'secondaryColor': '#f97316'}}}%%
-xychart-beta
-    title "Reranking Latency — 100 Documents (lower is better)"
-    x-axis ["Flash-Rerank", "Flash-Rerank\n+ BM25-Turbo", "Jina v3", "Cohere 3.5", "Voyage 2.5"]
-    y-axis "Latency (ms)" 0 --> 700
-    bar [72, 80, 188, 595, 603]
-```
+<p align="center">
+  <img src="assets/competitive-chart.svg" alt="Competitive comparison chart" width="700">
+</p>
 
 | Provider | Latency | Type | vs Flash-Rerank |
 |----------|---------|------|-----------------|
@@ -59,14 +54,9 @@ xychart-beta
 
 ### Latency Scaling
 
-```mermaid
-%%{init: {'theme': 'base'}}%%
-xychart-beta
-    title "Flash-Rerank Latency by Batch Size"
-    x-axis ["1 doc", "10 docs", "50 docs", "100 docs"]
-    y-axis "P50 Latency (ms)" 0 --> 80
-    bar [2.7, 10.3, 39.5, 72]
-```
+<p align="center">
+  <img src="assets/scaling-chart.svg" alt="Latency scaling chart" width="700">
+</p>
 
 | Documents | P50 Latency | Per-Doc Cost | QPS |
 |-----------|------------|-------------|-----|
@@ -79,21 +69,9 @@ Per-document cost decreases with batch size — parallel sub-batch scoring satur
 
 ### Two-Stage Pipeline Performance
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                    BM25-Turbo + Flash-Rerank                        │
-│                                                                     │
-│  8.8M documents ──BM25-Turbo──▶ Top 100 ──Flash-Rerank──▶ Top 5   │
-│                     8.6ms           │          72ms          │      │
-│                                     │                        │      │
-│                              Total: 80ms                            │
-│                                                                     │
-│  Competitors (reranking only):                                      │
-│    Jina:   ████████████████████ 188ms                               │
-│    Cohere: ████████████████████████████████████████████████ 595ms    │
-│    Voyage: █████████████████████████████████████████████████ 603ms   │
-└─────────────────────────────────────────────────────────────────────┘
-```
+<p align="center">
+  <img src="assets/pipeline-chart.svg" alt="Pipeline comparison chart" width="700">
+</p>
 
 ### Why Flash-Rerank Beats GPU-Accelerated APIs on CPU
 

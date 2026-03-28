@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+  <defs>
+    <linearGradient id="flash" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="pipeline" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="jina" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="100%" style="stop-color:#fb923c"/>
+    </linearGradient>
+    <linearGradient id="cohere" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#06b6d4"/>
+      <stop offset="100%" style="stop-color:#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="voyage" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#64748b"/>
+      <stop offset="100%" style="stop-color:#94a3b8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="380" rx="12" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" fill="#e6edf3" font-size="16" font-weight="600">Reranking Latency — 100 Documents (lower is better)</text>
+  <text x="400" y="55" text-anchor="middle" fill="#7d8590" font-size="12">milliseconds · MiniLM-L-6-v2 (22M params) · CPU INT8 parallel</text>
+
+  <!-- Grid lines -->
+  <line x1="220" y1="75" x2="220" y2="340" stroke="#21262d" stroke-width="1"/>
+  <line x1="295" y1="75" x2="295" y2="340" stroke="#21262d" stroke-width="1"/>
+  <line x1="370" y1="75" x2="370" y2="340" stroke="#21262d" stroke-width="1"/>
+  <line x1="445" y1="75" x2="445" y2="340" stroke="#21262d" stroke-width="1"/>
+  <line x1="520" y1="75" x2="520" y2="340" stroke="#21262d" stroke-width="1"/>
+  <line x1="595" y1="75" x2="595" y2="340" stroke="#21262d" stroke-width="1"/>
+  <line x1="670" y1="75" x2="670" y2="340" stroke="#21262d" stroke-width="1"/>
+  <line x1="745" y1="75" x2="745" y2="340" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Grid labels -->
+  <text x="220" y="355" text-anchor="middle" fill="#7d8590" font-size="10">0</text>
+  <text x="295" y="355" text-anchor="middle" fill="#7d8590" font-size="10">100ms</text>
+  <text x="370" y="355" text-anchor="middle" fill="#7d8590" font-size="10">200ms</text>
+  <text x="445" y="355" text-anchor="middle" fill="#7d8590" font-size="10">300ms</text>
+  <text x="520" y="355" text-anchor="middle" fill="#7d8590" font-size="10">400ms</text>
+  <text x="595" y="355" text-anchor="middle" fill="#7d8590" font-size="10">500ms</text>
+  <text x="670" y="355" text-anchor="middle" fill="#7d8590" font-size="10">600ms</text>
+
+  <!-- Flash-Rerank -->
+  <text x="210" y="103" text-anchor="end" fill="#e6edf3" font-size="13" font-weight="500">Flash-Rerank</text>
+  <text x="210" y="117" text-anchor="end" fill="#7d8590" font-size="10">(CPU INT8)</text>
+  <rect x="220" y="90" width="54" height="32" rx="4" fill="url(#flash)"/>
+  <text x="284" y="111" fill="#a5b4fc" font-size="13" font-weight="700">72 ms</text>
+  <text x="338" y="111" fill="#22c55e" font-size="11" font-weight="600">FASTEST</text>
+
+  <!-- Flash-Rerank + BM25-Turbo -->
+  <text x="210" y="158" text-anchor="end" fill="#e6edf3" font-size="13" font-weight="500">+ BM25-Turbo</text>
+  <text x="210" y="172" text-anchor="end" fill="#7d8590" font-size="10">(full pipeline)</text>
+  <rect x="220" y="145" width="60" height="32" rx="4" fill="url(#pipeline)"/>
+  <text x="290" y="166" fill="#c4b5fd" font-size="13" font-weight="700">80 ms</text>
+  <text x="340" y="166" fill="#7d8590" font-size="10">search 8.8M + rerank</text>
+
+  <!-- Jina -->
+  <text x="210" y="218" text-anchor="end" fill="#e6edf3" font-size="13" font-weight="500">Jina v3</text>
+  <text x="210" y="232" text-anchor="end" fill="#7d8590" font-size="10">(GPU API)</text>
+  <rect x="220" y="205" width="141" height="32" rx="4" fill="url(#jina)"/>
+  <text x="371" y="226" fill="#fdba74" font-size="13" font-weight="700">188 ms</text>
+  <text x="434" y="226" fill="#7d8590" font-size="10">2.6x slower</text>
+
+  <!-- Cohere -->
+  <text x="210" y="278" text-anchor="end" fill="#e6edf3" font-size="13" font-weight="500">Cohere 3.5</text>
+  <text x="210" y="292" text-anchor="end" fill="#7d8590" font-size="10">(Cloud API)</text>
+  <rect x="220" y="265" width="446" height="32" rx="4" fill="url(#cohere)"/>
+  <text x="676" y="286" fill="#67e8f9" font-size="13" font-weight="700">595 ms</text>
+
+  <!-- Voyage -->
+  <text x="210" y="333" text-anchor="end" fill="#e6edf3" font-size="13" font-weight="500">Voyage 2.5</text>
+  <text x="210" y="347" text-anchor="end" fill="#7d8590" font-size="10">(Cloud API)</text>
+  <rect x="220" y="320" width="452" height="32" rx="4" fill="url(#voyage)"/>
+  <text x="682" y="341" fill="#cbd5e1" font-size="13" font-weight="700">603 ms</text>
+</svg>
