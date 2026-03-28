@@ -70,6 +70,12 @@ pub struct CanaryDeployer {
     counter: u64,
 }
 
+impl Default for CanaryDeployer {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl CanaryDeployer {
     pub fn new() -> Self {
         Self {

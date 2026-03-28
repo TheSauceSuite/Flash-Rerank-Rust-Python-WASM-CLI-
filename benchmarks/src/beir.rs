@@ -1,5 +1,12 @@
+use std::collections::HashMap;
 use std::io::BufRead;
 use std::path::Path;
+
+/// Mapping from string identifiers to positional indices.
+type IdIndexMap = HashMap<String, usize>;
+
+/// Relevance triples: (query_index, document_index, relevance_label).
+type RelevanceTriples = Vec<(usize, usize, u8)>;
 
 /// BEIR dataset loader for evaluation benchmarks.
 ///
@@ -55,12 +62,11 @@ impl BeirDataset {
     /// Parse `queries.jsonl` into (texts, id->index map).
     fn parse_queries_jsonl(
         path: &Path,
-    ) -> Result<(Vec<String>, std::collections::HashMap<String, usize>), Box<dyn std::error::Error>>
-    {
+    ) -> Result<(Vec<String>, IdIndexMap), Box<dyn std::error::Error>> {
         let file = std::fs::File::open(path)?;
         let reader = std::io::BufReader::new(file);
         let mut texts = Vec::new();
-        let mut id_map = std::collections::HashMap::new();
+        let mut id_map = IdIndexMap::new();
 
         for line in reader.lines() {
             let line = line?;
@@ -88,12 +94,11 @@ impl BeirDataset {
     /// Concatenates title and text with a space separator.
     fn parse_corpus_jsonl(
         path: &Path,
-    ) -> Result<(Vec<String>, std::collections::HashMap<String, usize>), Box<dyn std::error::Error>>
-    {
+    ) -> Result<(Vec<String>, IdIndexMap), Box<dyn std::error::Error>> {
         let file = std::fs::File::open(path)?;
         let reader = std::io::BufReader::new(file);
         let mut texts = Vec::new();
-        let mut id_map = std::collections::HashMap::new();
+        let mut id_map = IdIndexMap::new();
 
         for line in reader.lines() {
             let line = line?;
@@ -126,9 +131,9 @@ impl BeirDataset {
     /// Format: `query-id\tcorpus-id\tscore` with a header row.
     fn parse_qrels_tsv(
         path: &Path,
-        query_id_map: &std::collections::HashMap<String, usize>,
-        doc_id_map: &std::collections::HashMap<String, usize>,
-    ) -> Result<Vec<(usize, usize, u8)>, Box<dyn std::error::Error>> {
+        query_id_map: &IdIndexMap,
+        doc_id_map: &IdIndexMap,
+    ) -> Result<RelevanceTriples, Box<dyn std::error::Error>> {
         let file = std::fs::File::open(path)?;
         let reader = std::io::BufReader::new(file);
         let mut relevance = Vec::new();

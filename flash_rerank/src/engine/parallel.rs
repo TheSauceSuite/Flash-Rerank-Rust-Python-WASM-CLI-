@@ -52,7 +52,7 @@ impl ParallelScorer {
         let total_threads = thread::available_parallelism()
             .map(|n| n.get())
             .unwrap_or(8);
-        let n_workers = num_workers.unwrap_or_else(|| (total_threads / 2).max(2).min(8));
+        let n_workers = num_workers.unwrap_or_else(|| (total_threads / 2).clamp(2, 8));
         let threads_per_worker = (total_threads / n_workers).max(1);
 
         let model_path = super::ort_backend::OrtScorer::resolve_model_path(model_dir, &config);
@@ -156,7 +156,7 @@ fn run_inference(
         .try_extract_tensor::<f32>()
         .map_err(|e| format!("extract: {e}"))?;
 
-    Ok(logits.iter().copied().collect())
+    Ok(logits.to_vec())
 }
 
 impl Scorer for ParallelScorer {
@@ -181,7 +181,7 @@ impl Scorer for ParallelScorer {
         let seq_len = encodings[0].get_ids().len();
 
         // 2. Split into sub-batches and dispatch to workers
-        let chunk_size = (total + self.num_workers - 1) / self.num_workers;
+        let chunk_size = total.div_ceil(self.num_workers);
         let mut receivers = Vec::new();
 
         for (worker_idx, chunk) in encodings.chunks(chunk_size).enumerate() {
@@ -226,7 +226,7 @@ impl Scorer for ParallelScorer {
             let logits = rx
                 .recv()
                 .map_err(|e| crate::Error::Inference(format!("Worker recv failed: {e}")))?
-                .map_err(|e| crate::Error::Inference(e))?;
+                .map_err(crate::Error::Inference)?;
 
             for logit in logits {
                 all_results.push(RerankResult {

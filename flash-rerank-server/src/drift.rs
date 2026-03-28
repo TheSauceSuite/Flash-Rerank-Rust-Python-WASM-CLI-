@@ -162,11 +162,10 @@ impl DriftDetector {
     /// Get the current drift status summary.
     pub fn status_summary(&self) -> DriftStatusSummary {
         let baseline_established = self.baseline.is_some();
-        let kl = if let Some(ref baseline) = self.baseline {
-            Some(kl_divergence(&self.current, baseline))
-        } else {
-            None
-        };
+        let kl = self
+            .baseline
+            .as_ref()
+            .map(|baseline| kl_divergence(&self.current, baseline));
 
         DriftStatusSummary {
             baseline_established,

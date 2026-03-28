@@ -156,7 +156,7 @@ impl DynamicBatcher {
             }
 
             // Dispatch the collected batch to the GPU thread
-            let ready_batch: Vec<BatchRequest> = batch.drain(..).collect();
+            let ready_batch: Vec<BatchRequest> = std::mem::take(&mut batch);
             if gpu_tx.send(ready_batch).is_err() {
                 tracing::error!("GPU thread channel closed, batcher shutting down");
                 break;

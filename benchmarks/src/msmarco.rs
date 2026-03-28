@@ -8,6 +8,9 @@ use rand::seq::SliceRandom;
 use crate::accuracy;
 use flash_rerank::engine::Scorer;
 
+/// Query relevance judgments: query_id -> [(doc_id, relevance_score)].
+type Qrels = HashMap<String, Vec<(String, u8)>>;
+
 /// MSMARCO evaluator for reranking quality benchmarks.
 ///
 /// Loads the MSMARCO dataset (corpus, queries, qrels) and provides
@@ -26,7 +29,7 @@ pub struct MsmarcoEvaluator {
     /// id -> text mapping for corpus documents.
     pub corpus: HashMap<String, String>,
     /// query_id -> [(doc_id, relevance)] mapping from qrels.
-    pub qrels: HashMap<String, Vec<(String, u8)>>,
+    pub qrels: Qrels,
 }
 
 impl MsmarcoEvaluator {
@@ -220,11 +223,11 @@ impl MsmarcoEvaluator {
     /// Parse qrels/dev.tsv into query_id -> [(doc_id, relevance)].
     fn parse_qrels(
         msmarco_dir: &Path,
-    ) -> Result<HashMap<String, Vec<(String, u8)>>, Box<dyn std::error::Error>> {
+    ) -> Result<Qrels, Box<dyn std::error::Error>> {
         let qrels_path = msmarco_dir.join("qrels").join("dev.tsv");
         let file = std::fs::File::open(&qrels_path)?;
         let reader = std::io::BufReader::new(file);
-        let mut qrels: HashMap<String, Vec<(String, u8)>> = HashMap::new();
+        let mut qrels: Qrels = HashMap::new();
 
         for (i, line) in reader.lines().enumerate() {
             let line = line?;
@@ -248,7 +251,7 @@ impl MsmarcoEvaluator {
 
             qrels
                 .entry(query_id)
-                .or_insert_with(Vec::new)
+                .or_default()
                 .push((doc_id, score));
         }
 
@@ -258,7 +261,7 @@ impl MsmarcoEvaluator {
     /// Parse queries.jsonl, filtering to those present in qrels.
     fn parse_queries(
         msmarco_dir: &Path,
-        qrels: &HashMap<String, Vec<(String, u8)>>,
+        qrels: &Qrels,
         max_queries: Option<usize>,
     ) -> Result<Vec<(String, String)>, Box<dyn std::error::Error>> {
         let queries_path = msmarco_dir.join("queries.jsonl");
