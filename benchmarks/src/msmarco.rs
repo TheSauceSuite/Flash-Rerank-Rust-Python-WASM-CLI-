@@ -221,9 +221,7 @@ impl MsmarcoEvaluator {
     }
 
     /// Parse qrels/dev.tsv into query_id -> [(doc_id, relevance)].
-    fn parse_qrels(
-        msmarco_dir: &Path,
-    ) -> Result<Qrels, Box<dyn std::error::Error>> {
+    fn parse_qrels(msmarco_dir: &Path) -> Result<Qrels, Box<dyn std::error::Error>> {
         let qrels_path = msmarco_dir.join("qrels").join("dev.tsv");
         let file = std::fs::File::open(&qrels_path)?;
         let reader = std::io::BufReader::new(file);
@@ -249,10 +247,7 @@ impl MsmarcoEvaluator {
             let doc_id = parts[1].to_string();
             let score: u8 = parts[2].parse().unwrap_or(0);
 
-            qrels
-                .entry(query_id)
-                .or_default()
-                .push((doc_id, score));
+            qrels.entry(query_id).or_default().push((doc_id, score));
         }
 
         Ok(qrels)
