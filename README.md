@@ -5,19 +5,19 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/TheSauceSuite/Flash-Rerank-Rust-Python-WASM-CLI-/actions"><img src="https://img.shields.io/github/actions/workflow/status/TheSauceSuite/Flash-Rerank-Rust-Python-WASM-CLI-/ci.yml?label=CI" alt="CI"></a>
+  <a href="https://github.com/alessandrobenigni/Flash-Rerank-Rust-Python-WASM-CLI-/actions"><img src="https://img.shields.io/github/actions/workflow/status/alessandrobenigni/Flash-Rerank-Rust-Python-WASM-CLI-/ci.yml?label=CI" alt="CI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-blue" alt="License"></a>
   <a href="https://crates.io/crates/flash_rerank"><img src="https://img.shields.io/crates/v/flash_rerank" alt="crates.io"></a>
   <a href="https://pypi.org/project/flash-rerank/"><img src="https://img.shields.io/pypi/v/flash-rerank" alt="PyPI"></a>
   <a href="https://www.npmjs.com/package/flash-rerank-wasm"><img src="https://img.shields.io/npm/v/flash-rerank-wasm" alt="npm"></a>
-  <a href="https://github.com/TheSauceSuite/Flash-Rerank-Rust-Python-WASM-CLI-/stargazers"><img src="https://img.shields.io/github/stars/TheSauceSuite/Flash-Rerank-Rust-Python-WASM-CLI-?style=social" alt="Stars"></a>
+  <a href="https://github.com/alessandrobenigni/Flash-Rerank-Rust-Python-WASM-CLI-/stargazers"><img src="https://img.shields.io/github/stars/alessandrobenigni/Flash-Rerank-Rust-Python-WASM-CLI-?style=social" alt="Stars"></a>
 </p>
 
 ---
 
 **72ms to rerank 100 documents on CPU.** No GPU, no cloud API, no Python in the inference path. Pure Rust with INT8 quantization, parallel sub-batch scoring, and zero-copy tokenization.
 
-Combined with [**BM25-Turbo**](https://github.com/TheSauceSuite/BM25-Turbo-Rust-Python-WASM-CLI), Flash-Rerank searches **8.8 million documents and semantically reranks the top 100 in 80ms** — faster than any competitor can rerank 100 pre-selected documents alone.
+Combined with [**BM25-Turbo**](https://github.com/alessandrobenigni/BM25-Turbo-Rust-Python-WASM-CLI), Flash-Rerank searches **8.8 million documents and semantically reranks the top 100 in 80ms** — faster than any competitor can rerank 100 pre-selected documents alone.
 
 ```python
 import flash_rerank
@@ -195,7 +195,7 @@ console.log(results); // [{index: 0, score: 0.95}, ...]
 
 ## Two-Stage Pipeline — BM25-Turbo + Flash-Rerank
 
-The direct sequel to [**BM25-Turbo**](https://github.com/TheSauceSuite/BM25-Turbo-Rust-Python-WASM-CLI). Together they form the fastest end-to-end retrieval + reranking pipeline in the world.
+The direct sequel to [**BM25-Turbo**](https://github.com/alessandrobenigni/BM25-Turbo-Rust-Python-WASM-CLI). Together they form the fastest end-to-end retrieval + reranking pipeline in the world.
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
@@ -474,7 +474,7 @@ Every existing reranker (Cohere, Voyage, Jina, BGE) runs a **Python server on to
 ### Reproducing Our Numbers
 
 ```bash
-git clone https://github.com/TheSauceSuite/Flash-Rerank-Rust-Python-WASM-CLI-.git
+git clone https://github.com/alessandrobenigni/Flash-Rerank-Rust-Python-WASM-CLI-.git
 cd Flash-Rerank-Rust-Python-WASM-CLI-
 
 # Download model
@@ -557,6 +557,6 @@ cd flash-rerank-wasm && wasm-pack build --target web
 ---
 
 <p align="center">
-  <strong>Built by <a href="https://github.com/TheSauceSuite">The Sauce Suite</a></strong><br>
+  <strong>Built by <a href="https://github.com/alessandrobenigni">The Sauce Suite</a></strong><br>
   <sub>Part of the BM25-Turbo ecosystem — the fastest search stack in the world.</sub>
 </p>

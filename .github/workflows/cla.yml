@@ -23,6 +23,6 @@ jobs:
           PERSONAL_ACCESS_TOKEN: ${{ secrets.CLA_TOKEN }}
         with:
           path-to-signatures: 'signatures/version1/cla.json'
-          path-to-document: 'https://github.com/TheSauceSuite/Flash-Rerank-Rust-Python-WASM-CLI-/blob/main/CLA.md'
+          path-to-document: 'https://github.com/alessandrobenigni/Flash-Rerank-Rust-Python-WASM-CLI-/blob/main/CLA.md'
           branch: 'main'
           allowlist: 'bot*,dependabot*'

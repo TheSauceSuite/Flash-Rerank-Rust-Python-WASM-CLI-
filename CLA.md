@@ -44,6 +44,6 @@ Your GitHub username, the date, and the Pull Request reference will be recorded 
 
 ---
 
-**Project:** Flash-Rerank (https://github.com/TheSauceSuite/Flash-Rerank-Rust-Python-WASM-CLI-)
+**Project:** Flash-Rerank (https://github.com/alessandrobenigni/Flash-Rerank-Rust-Python-WASM-CLI-)
 **Maintainer:** Alessandro Benigni (https://alessandrobenigni.com)
 **Date:** April 2026
