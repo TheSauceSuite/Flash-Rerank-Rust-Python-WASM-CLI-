@@ -187,7 +187,7 @@ const tokenizerJson = await fetch('/models/tokenizer.json').then(r => r.text());
 load_model(new Uint8Array(modelBytes), tokenizerJson);
 
 // Rerank entirely client-side — documents never leave the browser
-const results = rerank("machine learning", ["ML is a subset of AI", "Weather is sunny"], 5);
+const results = rerank("machine learning", ["ML is a subset of AI", "Weather is sunny"]);
 console.log(results); // [{index: 0, score: 0.95}, ...]
 ```
 
@@ -396,9 +396,10 @@ flash-rerank serve --model ms-marco-MiniLM-L-6-v2 --otlp-endpoint http://localho
 | `/admin/drift/reset-baseline` | POST | Reset drift baseline |
 | `/admin/ab` | POST/PUT/DELETE | A/B test management |
 | `/admin/ab/metrics` | GET | Per-variant comparison metrics |
-| `/admin/canary/start` | POST | Start canary deployment |
+| `/admin/canary` | POST | Start canary deployment |
 | `/admin/canary/status` | GET | Canary rollout status |
-| `/admin/canary/abort` | POST | Abort and rollback |
+| `/admin/canary/advance` | POST | Advance to next rollout stage |
+| `/admin/canary` | DELETE | Abort and rollback |
 
 ---
 

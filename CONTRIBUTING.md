@@ -7,8 +7,8 @@ Thank you for your interest in contributing to Flash-Rerank! This document provi
 1. **Fork** the repository on GitHub.
 2. **Clone** your fork locally:
    ```bash
-   git clone https://github.com/<your-username>/Flash-Rerank-Rust-Python-WASM-CLI.git
-   cd Flash-Rerank-Rust-Python-WASM-CLI
+   git clone https://github.com/<your-username>/Flash-Rerank-Rust-Python-WASM-CLI-.git
+   cd Flash-Rerank-Rust-Python-WASM-CLI-
    ```
 3. **Create a branch** for your change:
    ```bash
@@ -76,4 +76,4 @@ wasm-pack build --target web
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the MIT OR Apache-2.0 dual license.
+By contributing, you agree that your contributions will be licensed under the AGPL-3.0-or-later license, consistent with the project's license.

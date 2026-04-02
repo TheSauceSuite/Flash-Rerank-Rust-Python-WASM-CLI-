@@ -49,7 +49,6 @@ Thumbs.db
 # Development metadata (not shipped)
 .nova/
 .claude/
-CLAUDE.md
 BM25 Turbo/
 
 # Generated benchmark results (reproducible via cargo bench)
