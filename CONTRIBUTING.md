@@ -66,14 +66,21 @@ wasm-pack build --target web
 
 1. **Push** your branch to your fork.
 2. Open a **Pull Request** against the `main` branch.
-3. Describe your changes and link any related issues.
-4. Ensure CI passes on your PR.
+3. **Sign the CLA** — A bot will comment on your PR asking you to sign the [Contributor License Agreement](CLA.md). Comment with the exact phrase: `I have read the CLA Document and I hereby sign the CLA`. The PR cannot be merged until the CLA is signed.
+4. Describe your changes and link any related issues.
+5. Ensure CI passes on your PR.
 
 ## Reporting Issues
 
 - Use GitHub Issues for bug reports and feature requests.
 - Include steps to reproduce for bugs, with OS, Rust version, and hardware (CPU/GPU) details.
 
+## Contributor License Agreement (CLA)
+
+All contributors must sign the [CLA](CLA.md) before their first Pull Request can be merged. This is required because Flash-Rerank uses a dual-licensing model (AGPL-3.0 for open-source, commercial license for enterprises). The CLA grants the maintainer the right to include your contributions under both licenses.
+
+The signing process is fully automated via a GitHub bot — just comment on your PR and you're done.
+
 ## License
 
-By contributing, you agree that your contributions will be licensed under the AGPL-3.0-or-later license, consistent with the project's license.
+By contributing, you agree that your contributions will be licensed under the AGPL-3.0-or-later license and that the maintainer may re-license contributions under commercial terms per the [CLA](CLA.md).
